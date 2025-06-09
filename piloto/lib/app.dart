@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:piloto/screen/login.dart';
+import 'package:piloto/views/screen/login.dart';
+import 'package:piloto/views/widget_tree.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
             brightness: Brightness.dark
         ),
       ),
-      home: Login(),
+      home: WidgetTree(),
     );
   }
 }

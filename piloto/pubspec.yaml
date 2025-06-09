@@ -35,6 +35,7 @@ dependencies:
   
   cupertino_icons: ^1.0.8
   flutter_launcher_icons: ^0.14.3
+  carousel_slider: ^5.0.0
 
 
 dev_dependencies:
