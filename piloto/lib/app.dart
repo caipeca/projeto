@@ -14,7 +14,7 @@ class App extends StatelessWidget {
             brightness: Brightness.dark
         ),
       ),
-      home: WidgetTree(),
+      home: Login(),
     );
   }
 }

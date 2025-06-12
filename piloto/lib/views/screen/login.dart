@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:piloto/config/auth/authentication.dart';
+import '../widget_tree.dart';
 
 
 class Login extends StatefulWidget {
@@ -11,8 +11,38 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
+  bool rememberMe = false;
+
+  void _handleLogin(BuildContext context) async {
+    final email = controllerEmail.text.trim();
+    final password = controllerPassword.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Preencha todos os campos')),
+      );
+      return;
+    }
+
+    final success = await Authentication.loginUser(email, password);
+    if (success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login feito com sucesso!')),
+      );
+
+      // Navegar para a próxima tela
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const WidgetTree()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Falha no login')),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -20,83 +50,79 @@ class _LoginState extends State<Login> {
     controllerPassword.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    bool value = true;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.only(top: 56.0, left: 24.0,bottom: 24.0, right: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.fromLTRB(24, 56, 24, 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.asset("assets/images/logo.png", height: 150, width: 150),
+            ),
+            const Center(
+              child: Text(
+                'Por favor insira as credenciais',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: controllerEmail,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: controllerPassword,
+              obscureText: true,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.lock),
+                labelText: 'Senha',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            Row(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image(height: 150, width: 150, image: AssetImage("assets/images/logo.png")),
-                  ],
+                Checkbox(
+                  value: rememberMe,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      rememberMe = value ?? false;
+                    });
+                  },
                 ),
-                 Center(
-                   child: FittedBox(
-                      child: Text('Por favor insira as credênciais', style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20.0,
-                      ),),
-                    ),
-                 ),
-                SizedBox(height: 10,),
-                TextFormField(
-                  controller: controllerEmail,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email),
-                    label: Text('Insira o Email'),
-                    border: OutlineInputBorder(borderRadius:BorderRadius.vertical()),
-                  ),
-                ),
-                SizedBox(height: 10,),
-                TextFormField(
-                  controller: controllerPassword,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
-                    label: Text('Insira a palavra passe'),
-                    border: OutlineInputBorder(borderRadius:BorderRadius.vertical()),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Checkbox(value: value , onChanged: (value) {
-                        }, ),
-                        SizedBox(height: 10.0,),
-                      ],
-                    )
-                  ],
-                ),
-                Center(
-                  child: ElevatedButton(
-                      onPressed: () {},
-                  style:ElevatedButton.styleFrom(
-                      minimumSize: Size(250.0 , 50.0),
-                    backgroundColor: Colors.teal,
-                    shape: LinearBorder()
-                  ),
-                    child: Text('Entrar'),
-                  ),
-        
-                ),
-                SizedBox(height: 10.0,),
-                Center(
-                    child: OutlinedButton(
-                      onPressed: (){},
-                      style:OutlinedButton.styleFrom(
-                          minimumSize: Size(250.0 , 50.0),
-                          shape: ContinuousRectangleBorder()
-                      ),
-                      child: Text('Registar'),)),
+                const Text('Lembrar de mim'),
               ],
             ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () => _handleLogin(context),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(250.0, 50.0),
+                  backgroundColor: Colors.teal,
+                ),
+                child: const Text('Entrar'),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Center(
+              child: OutlinedButton(
+                onPressed: () {
+                  // Navegar para a tela de cadastro (registo)
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(250.0, 50.0),
+                ),
+                child: const Text('Registrar'),
+              ),
+            ),
+          ],
         ),
       ),
     );
