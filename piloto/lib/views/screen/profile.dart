@@ -1,17 +1,41 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:piloto/config/auth/authentication.dart';
+import 'login.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
-  @override
-  State<Profile> createState() => _ProfileState();
-}
+  void _logout(BuildContext context) async {
+    await Authentication.logoutUser();
 
-class _ProfileState extends State<Profile> {
+    // Volta para tela de login
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const Login()),
+          (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profile'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Perfil"),
+        backgroundColor: Colors.teal,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => _logout(context),
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text(
+          'Bem-vindo ao seu perfil!',
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
+

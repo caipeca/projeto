@@ -4,10 +4,12 @@ import 'package:piloto/data/notifier.dart';
 import 'package:piloto/menu.dart';
 import 'package:piloto/views/screen/home.dart';
 import 'package:piloto/views/screen/profile.dart';
+import 'package:piloto/views/screen/store.dart';
 
 List<Widget> pages = [
   Home(),
-  Profile(),
+  Store(),
+  ProfilePage(),
 ];
 
 class WidgetTree extends StatelessWidget {

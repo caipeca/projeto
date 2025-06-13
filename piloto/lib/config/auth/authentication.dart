@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Authentication {
 
-  static const String baseUrl = 'http://172.20.160.1:8000/users';
+  // static const String baseUrl = 'http://192.168.196.37:8000/users';
+  static const String baseUrl = 'http://192.168.89.1:8000/users';
 
   static Future<bool> loginUser(String email, String password) async {
 
@@ -22,10 +23,16 @@ class Authentication {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('jwtToken', token);
       print('Token Salvo Com sucesso');
+      print(token);
       return true;
     }else{
       print(response.body);
       return false;
     }
+  }
+
+  static Future<void> logoutUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
   }
 }

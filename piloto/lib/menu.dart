@@ -13,6 +13,7 @@ class Menu extends StatelessWidget {
           return NavigationBar(
             destinations: [
               NavigationDestination(icon: Icon(Icons.home), label: 'Inicio'),
+              NavigationDestination(icon: Icon(Icons.store), label: 'Estabelecimento'),
               NavigationDestination(icon: Icon(Icons.person), label: 'Perfil'),
             ],
             onDestinationSelected: (int value) {
