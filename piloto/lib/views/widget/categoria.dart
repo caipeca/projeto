@@ -15,7 +15,7 @@ class Categoria extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: border,
-          color: Colors.teal.shade900,
+          color: Color(0xFFA47551),
           borderRadius: BorderRadius.circular(30.0),
         ),
         child: Text(

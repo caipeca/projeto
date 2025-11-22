@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piloto/utils/theme/theme.dart';
 import 'package:piloto/views/screen/login.dart';
 import 'package:piloto/views/widget_tree.dart';
 
@@ -8,12 +9,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.teal.shade700,
-            brightness: Brightness.dark
-        ),
-      ),
+      themeMode: ThemeMode.system,
+      theme: PAppTheme.ligTheme,
+      darkTheme: PAppTheme.darkTheme,
       home: Login(),
     );
   }

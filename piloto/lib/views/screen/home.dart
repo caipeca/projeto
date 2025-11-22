@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart' as carousel_slider;
 import 'package:piloto/app.dart';
 import 'package:http/http.dart' as http;
+import 'package:piloto/model/item.dart';
 import 'package:piloto/views/screen/register_product.dart';
+import '../../helper/preco_helper.dart';
 import '../../helper/product_helper.dart';
 import '../../model/produto.dart';
 import '../widget/categoria.dart';
@@ -17,8 +19,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Produto> produtos = [];
-  List<Produto> produtosFiltrados = [];
+  List<Item> produtos = [];
+  List<Item> produtosFiltrados = [];
   String termoBusca = '';
 
   @override
@@ -28,11 +30,12 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> buscarProdutos() async {
-    final response = await http.get(Uri.parse('http://192.168.89.1:8000/products')); // AJUSTE AQUI
+    final response = await http.get(Uri.parse('http://192.168.196.37:8000/items/')); // AJUSTE AQUI
+    //final response = await http.get(Uri.parse('http://192.168.196.43:8000/products')); // AJUSTE AQUI
     if (response.statusCode == 200) {
       final List dados = jsonDecode(response.body);
       setState(() {
-        produtos = dados.map((json) => Produto.fromJson(json)).toList();
+        produtos = dados.map((json) => Item.fromJson(json)).toList();
         produtosFiltrados = produtos;
       });
     } else {
@@ -113,6 +116,7 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   final produto = produtosFiltrados[index];
                   return Card(
+                    color: Color(0xFFE8DED4),
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
@@ -143,7 +147,7 @@ class _HomeState extends State<Home> {
                                     fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 4),
-                              Text('${produto.preco.toStringAsFixed(2)}kz'),
+                              //Text('${produto.preco.toStringAsFixed(2)}kz'),
                             ],
                           ),
                         ),
@@ -159,7 +163,8 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          CadastroProdutoHelper.mostrarFormularioCadastro(context);
+          //CadastroProdutoHelper.mostrarFormularioCadastro(context);
+          CadastroPrecoHelper.mostrarFormularioCadastro(context);
         },
         child: Icon(Icons.add),
         tooltip: 'Adicionar Produto',

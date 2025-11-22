@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "716272652721",
+    "project_id": "netmaster-993c7",
+    "storage_bucket": "netmaster-993c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716272652721:android:92daa475a74cfe26516d90",
+        "android_client_info": {
+          "package_name": "com.maestro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8HQy6kLe9ucccI-fj0ojLaudN4_-q-GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

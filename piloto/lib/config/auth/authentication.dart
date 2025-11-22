@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Authentication {
 
-  // static const String baseUrl = 'http://192.168.196.37:8000/users';
-  static const String baseUrl = 'http://192.168.89.1:8000/users';
+   static const String baseUrl = 'http://192.168.196.37:8000/users';
+  //static const String baseUrl = 'http://192.168.196.43:8000/users';
 
   static Future<bool> loginUser(String email, String password) async {
 

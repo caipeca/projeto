@@ -11,6 +11,7 @@ class Menu extends StatelessWidget {
         valueListenable: selectedPageNotifier,
         builder: (context, selectedPage, child) {
           return NavigationBar(
+            backgroundColor: Color(0xFFE8DED4),
             destinations: [
               NavigationDestination(icon: Icon(Icons.home), label: 'Inicio'),
               NavigationDestination(icon: Icon(Icons.store), label: 'Estabelecimento'),
@@ -18,6 +19,7 @@ class Menu extends StatelessWidget {
             ],
             onDestinationSelected: (int value) {
               selectedPageNotifier.value = value;
+
             },
             selectedIndex: selectedPage,
           );

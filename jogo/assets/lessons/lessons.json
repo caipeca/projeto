@@ -1,0 +1,50 @@
+[
+  {
+    "id": "l1",
+    "title": "Introdução às Redes",
+    "description": "Conceitos básicos de redes",
+    "unlocked": true,
+    "completed": false,
+    "quizSteps": ["Enviar pacote","Roteamento","Entrega ao destino"],
+    "content": [
+      {"type":"title","value":"O que é uma rede?"},
+      {"type":"text","value":"Uma rede é um conjunto de dispositivos que trocam dados entre si. Permite comunicação, partilha de arquivos e acesso à internet."},
+      {"type":"image","value":"assets/images/network_intro.png"},
+      {"type":"example","value":{"title":"Exemplo prático:","description":"Quando envias uma mensagem, teu telemóvel envia pacotes ao servidor via roteador — e esses pacotes transitam pela internet."}},
+      {"type":"diagram","value":"[ Teu Telemóvel ]\\n    |\\n    |  Wi-Fi/4G\\n    |\\n[ Roteador ] --- [ Internet ] --- [ Servidor ]"},
+      {"type":"list","value":["Permite comunicação","Acesso remoto","Transferência de dados","Conecta pessoas"]}
+    ]
+  },
+  {
+    "id": "l2",
+    "title": "Modelo OSI",
+    "description": "7 camadas da comunicação",
+    "unlocked": false,
+    "completed": false,
+    "quizSteps": ["Aplicação","Transporte","Rede","Enlace","Física"],
+    "content": [
+      {"type":"title","value":"O Modelo OSI"},
+      {"type":"text","value":"O modelo OSI organiza as responsabilidades de rede em 7 camadas."},
+      {"type":"image","value":"assets/images/osi_layers.png"},
+      {"type":"diagram","value":"7 - Aplicação\\n6 - Apresentação\\n5 - Sessão\\n4 - Transporte\\n3 - Rede\\n2 - Enlace\\n1 - Física"},
+      {"type":"example","value":{"title":"Exemplo prático:","description":"Quando carregas uma página web, a camada de aplicação cria o pedido HTTP; o TCP (camada 4) garante a entrega."}}
+    ]
+  },
+  {
+    "id": "l3",
+    "title": "TCP vs UDP",
+    "description": "Conexão e envio de dados",
+    "unlocked": false,
+    "completed": false,
+    "quizSteps": ["Handshake 3-way","Troca de dados","Encerramento da conexão"],
+    "content": [
+      {"type":"title","value":"TCP"},
+      {"type":"text","value":"TCP é orientado à conexão e garante entrega e ordem dos dados."},
+      {"type":"image","value":"assets/images/tcp_handshake.png"},
+      {"type":"diagram","value":"Cliente ---- SYN ----> Servidor\\nCliente <--- SYN/ACK --- Servidor\\nCliente ---- ACK ----> Servidor"},
+      {"type":"title","value":"UDP"},
+      {"type":"text","value":"UDP é sem conexão — rápido e sem garantias; usado em streaming e jogos."},
+      {"type":"example","value":{"title":"Exemplo prático:","description":"Em chamadas de vídeo, perder alguns pacotes é aceitável para manter a fluidez."}}
+    ]
+  }
+]

@@ -6,11 +6,11 @@ import 'package:piloto/views/screen/home.dart';
 import 'package:piloto/views/screen/profile.dart';
 import 'package:piloto/views/screen/store.dart';
 
-List<Widget> pages = [
-  Home(),
-  Store(),
-  ProfilePage(),
-];
+//List<Widget> pages = [
+  //Home(),
+  //Store(),
+  //ProfilePage(),
+//];
 
 class WidgetTree extends StatelessWidget {
   const WidgetTree({super.key});
@@ -18,15 +18,27 @@ class WidgetTree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Economizar'),
-      ),
+      appBar: AppBar(title: Text('Economizar')),
       body: ValueListenableBuilder(
-          valueListenable: selectedPageNotifier,
-          builder: (context, selectedPage, child) {
-            return pages.elementAt(selectedPage);
-          },),
+        valueListenable: selectedPageNotifier,
+        builder: (context, selectedPage, child) {
+          return _buildPage(selectedPage);
+        },
+      ),
       bottomNavigationBar: Menu(),
     );
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return Home();
+      case 1:
+        return Store();
+      case 2:
+        return ProfilePage();
+      default:
+        return Home();
+    }
   }
 }

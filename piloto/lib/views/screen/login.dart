@@ -105,7 +105,6 @@ class _LoginState extends State<Login> {
                 onPressed: () => _handleLogin(context),
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(250.0, 50.0),
-                  backgroundColor: Colors.teal,
                 ),
                 child: const Text('Entrar'),
               ),
