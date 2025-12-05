@@ -53,61 +53,95 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff0f6f4), // igual imagem
       appBar: AppBar(
         title: const Text('Trilha • Redes'),
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black87,
         elevation: 0,
+        foregroundColor: Colors.black87,
       ),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
+            // CARD DO PROGRESSO (idêntico ao da imagem)
             Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(22),
+              ),
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(16),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CableMascot(size: 90),
                     const SizedBox(width: 12),
-                    Expanded(child: _ProgressSummary(lessons: _lessons,)),
+                    Expanded(child: _ProgressSummary(lessons: _lessons)),
                   ],
                 ),
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 14),
 
+            // BOTÕES (igual imagem)
             Row(
               children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DragQuizScreen()));
-                  },
-                  icon: const Icon(Icons.extension),
-                  label: const Text("Quiz de Arrastar"),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xffeaf4f1),
+                      foregroundColor: Colors.black87,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const DragQuizScreen(),
+                      ));
+                    },
+                    icon: const Icon(Icons.extension),
+                    label: const Text("Quiz de Arrastar"),
+                  ),
                 ),
+
                 const SizedBox(width: 12),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizMapScreen()));
-                  },
-                  child: const Text("Mapa de Quizzes"),
+
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xffeaf4f1),
+                      foregroundColor: Colors.black87,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const QuizMapScreen(),
+                      ));
+                    },
+                    child: const Text("Mapa de Quizzes"),
+                  ),
                 ),
               ],
             ),
 
-            const SizedBox(height: 14),
+            const SizedBox(height: 16),
 
+            // LISTA DAS AULAS
             Expanded(
               child: ListView.separated(
                 itemCount: _lessons.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 10),
                 itemBuilder: (context, i) {
-                  final l = _lessons[i];
+                  final lesson = _lessons[i];
                   return LessonCard(
-                    lesson: l,
+                    lesson: lesson,
                     index: i,
                     onTap: () => _openLesson(i),
                   );
@@ -123,8 +157,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 class _ProgressSummary extends StatelessWidget {
   final List<Lesson> lessons;
-
-  const _ProgressSummary({super.key, required this.lessons});
+  const _ProgressSummary({required this.lessons});
 
   @override
   Widget build(BuildContext context) {
@@ -136,29 +169,27 @@ class _ProgressSummary extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Progresso',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          "Progresso",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 8),
 
-        // BARRA DE PROGRESSO REAL
         LinearProgressIndicator(
           value: progress,
           backgroundColor: Colors.grey.shade300,
-          valueColor: AlwaysStoppedAnimation(Colors.teal),
+          valueColor: const AlwaysStoppedAnimation(Color(0xff0e8c79)),
         ),
 
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Aulas concluídas: $completed / ${lessons.length}'),
-            Text('XP: $xp'),
+            Text("Aulas concluídas: $completed / ${lessons.length}"),
+            Text("XP: $xp"),
           ],
         )
       ],
     );
   }
 }
-

@@ -63,11 +63,18 @@ class _OrderStepsQuizState extends State<OrderStepsQuiz> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: ElevatedButton(onPressed: verifyOrder, child: const Text("Verificar")),
+          SafeArea(
+            top: false,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: verifyOrder,
+                child: const Text('Verificar'),
+              ),
+            ),
           ),
-        ],
+                  ],
       ),
     );
   }

@@ -9,7 +9,7 @@
     "content": [
       {"type":"title","value":"O que é uma rede?"},
       {"type":"text","value":"Uma rede é um conjunto de dispositivos que trocam dados entre si. Permite comunicação, partilha de arquivos e acesso à internet."},
-      {"type":"image","value":"assets/images/network_intro.png"},
+      {"type":"image","value":"assets/images/network.png"},
       {"type":"example","value":{"title":"Exemplo prático:","description":"Quando envias uma mensagem, teu telemóvel envia pacotes ao servidor via roteador — e esses pacotes transitam pela internet."}},
       {"type":"diagram","value":"[ Teu Telemóvel ]\\n    |\\n    |  Wi-Fi/4G\\n    |\\n[ Roteador ] --- [ Internet ] --- [ Servidor ]"},
       {"type":"list","value":["Permite comunicação","Acesso remoto","Transferência de dados","Conecta pessoas"]}
